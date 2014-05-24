@@ -10,9 +10,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.Random;
 
-@Path("/dbhealth")
+@Path("/status/health")
 @Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
 public class DatabaseHealthCheckRestService extends HealthCheck implements DatabaseHealthCheck {
 
     private final Random random = new Random();
@@ -23,9 +22,9 @@ public class DatabaseHealthCheckRestService extends HealthCheck implements Datab
     @Override
     public Result check() {
         if (random.nextInt(5) % 5 == 1) {
-            return Result.healthy();
+            return Result.unhealthy("Cannot. Is down", "Aap", "Noot");
         } else {
-            return Result.unhealthy("Cannot is down");
+            return Result.healthy();
         }
     }
 
