@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('NightWhistler.TardisFrontend', ['ngAnimate', 'ngResource', 'ngRoute'])
+angular.module('QSD.Tardis', ['ngAnimate', 'ngResource', 'ngRoute'])
 
   .constant('version', 'v0.1.0')
 
