@@ -10,16 +10,15 @@ import nl.qsd.tardis.modules.database.DatabaseModule;
 public class ApplicationService extends Application<TardisConfiguration> {
 
     public static void main(String[] args) throws Exception {
-        System.out.println("ping");
         new ApplicationService().run(args);
     }
 
     @Override
     public void initialize(Bootstrap<TardisConfiguration> bootstrap) {
         GuiceBundle<TardisConfiguration> guiceBundle = GuiceBundle.<TardisConfiguration>newBuilder()
-                .addModule(new StatusModule())
                 .addModule(new DatabaseModule())
-                .enableAutoConfig(getClass().getPackage().getName())
+                .addModule(new StatusModule())
+                .enableAutoConfig("nl.qsd.tardis")
                 .setConfigClass(TardisConfiguration.class)
                 .build();
 
