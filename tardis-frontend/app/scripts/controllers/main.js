@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('NightWhistler.TardisFrontend')
+angular.module('QSD.Tardis')
 
   .controller('MainCtrl', function($scope, $location, version) {
 
