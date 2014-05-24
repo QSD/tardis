@@ -4,5 +4,5 @@ import java.util.Collection;
 
 
 public interface Meta {
-    public Collection<String> profiles();
+    public Collection<Profile> profiles();
 }
