@@ -5,7 +5,10 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import io.dropwizard.jersey.caching.CacheControl;
 
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,18 +23,18 @@ public class StatusRestService implements Status {
     private final Map<Long, Unit> units = Maps.newHashMap();
 
     public StatusRestService() {
-        Unit u1 = new Unit(1L,"Jenkins", "bla bla bla", UnitState.GREEN, new ArrayList<>());
-        Unit u2 = new Unit(2L, "LogStash", "bla bla bla", UnitState.GREEN, new ArrayList<>());
-        Unit u3 = new Unit(3L, "Jenkins 2", "bla bla bla", UnitState.BLACK, new ArrayList<>());
-        Unit u4 = new Unit(4L, "Jenkins 3", "bla bla bla", UnitState.YElLOW, Lists.newArrayList(u1,u2));
-        Unit u5 = new Unit(5L, "Jenkins 4", "bla bla bla", UnitState.GREEN, new ArrayList<>());
+        Unit u1 = new Unit(1L, "Jenkins", "bla bla bla", UnitState.GREEN, new ArrayList<Unit>());
+        Unit u2 = new Unit(2L, "LogStash", "bla bla bla", UnitState.GREEN, new ArrayList<Unit>());
+        Unit u3 = new Unit(3L, "Jenkins 2", "bla bla bla", UnitState.BLACK, new ArrayList<Unit>());
+        Unit u4 = new Unit(4L, "Jenkins 3", "bla bla bla", UnitState.YElLOW, Lists.newArrayList(u1, u2));
+        Unit u5 = new Unit(5L, "Jenkins 4", "bla bla bla", UnitState.GREEN, new ArrayList<Unit>());
 
 
-        units.put(u1.getId(),u1);
-        units.put(u2.getId(),u2);
-        units.put(u3.getId(),u3);
-        units.put(u4.getId(),u4);
-        units.put(u5.getId(),u5);
+        units.put(u1.getId(), u1);
+        units.put(u2.getId(), u2);
+        units.put(u3.getId(), u3);
+        units.put(u4.getId(), u4);
+        units.put(u5.getId(), u5);
     }
 
     @GET
@@ -47,7 +50,7 @@ public class StatusRestService implements Status {
     @Timed
     @CacheControl(noCache = true)
     public List<Unit> getAllUnits() {
-        return new ArrayList<>( units.values() );
+        return new ArrayList<>(units.values());
     }
 
     @GET
