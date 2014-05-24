@@ -12,12 +12,27 @@
     <artifactId>tardis-backend</artifactId>
     <packaging>war</packaging>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <debug>true</debug>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
     <properties>
         <dependency.dropwizard.version>0.7.0</dependency.dropwizard.version>
         <dependency.guice.version>3.0</dependency.guice.version>
         <dependency.jetty.version>6.1.25</dependency.jetty.version>
     </properties>
-
+    
     <dependencies>
         <dependency>
             <groupId>io.dropwizard</groupId>
