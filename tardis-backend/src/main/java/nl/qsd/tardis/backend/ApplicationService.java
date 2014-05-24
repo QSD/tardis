@@ -6,6 +6,11 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import nl.qsd.tardis.backend.status.StatusModule;
 import nl.qsd.tardis.modules.database.DatabaseModule;
+import org.eclipse.jetty.servlets.CrossOriginFilter;
+import org.reflections.util.FilterBuilder;
+
+import javax.servlet.DispatcherType;
+import java.util.EnumSet;
 
 public class ApplicationService extends Application<TardisConfiguration> {
 
@@ -27,5 +32,12 @@ public class ApplicationService extends Application<TardisConfiguration> {
 
     @Override
     public void run(TardisConfiguration tardisConfiguration, Environment environment) throws Exception {
+        environment.servlets()
+                .addFilter("Custom-Filter-Name", new CrossOriginFilter())
+                .addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
+//        filterConfig.setInitParam(CrossOriginFilter.ALLOWED_ORIGINS_PARAM, "*");
+//        filterConfig.setInitParam("Access-Control-Allow-Credentials", "*");
+//        filterConfig.setInitParam("Access-Control-Allow-Methods", "*");
+
     }
 }
