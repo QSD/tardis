@@ -4,12 +4,16 @@ angular.module('QSD.Tardis')
 
   .directive('tardisTrafficLight', function() {
 
-    console.log( "Initializing the traffic light");
 
     return {
       restrict: 'AEC',
       scope: {
           light: '='
+      },
+      link: function( $scope ) {
+        $scope.$watch( 'light', function() {
+            $scope.light.state = $scope.light.state.toLowerCase();
+        } );
       },
       templateUrl: "views/directives/traffic-light.html"
     };
