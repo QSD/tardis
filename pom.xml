@@ -9,6 +9,8 @@
     <version>0.1.0-SNAPSHOT</version>
     <modules>
         <module>tardis-backend</module>
+        <module>modules/tardis-log</module>
+        <module>modules/tardis-database-status</module>
     </modules>
     <packaging>pom</packaging>
 </project>
