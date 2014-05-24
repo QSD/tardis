@@ -32,7 +32,7 @@
         <dependency.guice.version>3.0</dependency.guice.version>
         <dependency.jetty.version>6.1.25</dependency.jetty.version>
     </properties>
-    
+
     <dependencies>
         <dependency>
             <groupId>io.dropwizard</groupId>
