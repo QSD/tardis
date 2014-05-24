@@ -1,0 +1,24 @@
+#####
+# Build files and folders
+#####
+target/
+classes/
+out/
+.checkstyle
+.pmd
+
+#####
+# Eclipse files and folders
+#####
+.metadata/
+.settings/
+.classpath
+.project
+
+#####
+# IntelliJ IDEA files and folders
+#####
+.idea/
+*.iwl
+*.ips
+*.iml
