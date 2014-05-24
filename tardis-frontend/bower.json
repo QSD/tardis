@@ -29,6 +29,7 @@
     "angular-resource": "^1.2.16",
     "angular-route": "^1.2.16",
     "angular": "^1.2.16",
+    "angular-charts": "*",
     "xcharts": "https://github.com/vperron/bower-xcharts"
   }
 }
