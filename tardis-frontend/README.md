@@ -11,5 +11,6 @@ Chart library:
 - xcharts http://tenxer.github.io/xcharts/
 - d3
 
-
+Icons:
+https://useiconic.com/open/
 
