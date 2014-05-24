@@ -13,8 +13,14 @@ public class ApplicationService extends Application<TardisConfiguration> {
         new ApplicationService().run(args);
     }
 
-    @Override
-    public void initialize(Bootstrap<TardisConfiguration> tardisConfigurationBootstrap) {
+	@Override
+	public void initialize(
+			Bootstrap<TardisConfiguration> bootstrap) {
+		GuiceBundle<TardisConfiguration> guiceBundle = GuiceBundle
+				.<TardisConfiguration> newBuilder()
+				// TODO: add module
+				.addModule(new HelloWorldModule())
+				.setConfigClass(TardisConfiguration.class).build();
 
         System.out.println("tardis initialize ");
     }
