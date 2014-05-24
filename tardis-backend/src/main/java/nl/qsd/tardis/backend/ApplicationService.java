@@ -4,8 +4,8 @@ import com.hubspot.dropwizard.guice.GuiceBundle;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import nl.qsd.tardis.backend.status.DatabaseHealthCheck;
-import nl.qsd.tardis.backend.status.StatusResource;
+import nl.qsd.tardis.backend.status.DatabaseHealthCheckRestService;
+import nl.qsd.tardis.backend.status.StatusModule;
 
 public class ApplicationService extends Application<TardisConfiguration> {
 
@@ -14,24 +14,23 @@ public class ApplicationService extends Application<TardisConfiguration> {
         new ApplicationService().run(args);
     }
 
-	@Override
-	public void initialize(
-			Bootstrap<TardisConfiguration> bootstrap) {
-		GuiceBundle<TardisConfiguration> guiceBundle = GuiceBundle
-				.<TardisConfiguration> newBuilder()
-				.setConfigClass(TardisConfiguration.class).build();
+    @Override
+    public void initialize(Bootstrap<TardisConfiguration> bootstrap) {
+        GuiceBundle<TardisConfiguration> guiceBundle = GuiceBundle.<TardisConfiguration>newBuilder()
+                .addModule(new StatusModule())
+                .enableAutoConfig(getClass().getPackage().getName())
+                .setConfigClass(TardisConfiguration.class)
+                .build();
 
-        System.out.println("tardis initialize ");
+        bootstrap.addBundle(guiceBundle);
     }
 
     @Override
-    public void run(TardisConfiguration tardisConfiguration, Environment environment) throws Exception {
-
+    public void run(TardisConfiguration tardisConfiguration,
+                    Environment environment) throws Exception {
         System.out.println("tardis service ");
 //        final Thingy thingy = config.getThingyFactory().build();
 
-        environment.jersey().register(new StatusResource());
-        environment.jersey().register(new DatabaseHealthCheck());
 
     }
 }

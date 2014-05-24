@@ -17,13 +17,13 @@ import java.util.Map;
 @Path("/status")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class StatusResource {
+public class StatusRestService implements Status {
 
     static int i;
 
     private final Map<Long, Unit> units = Maps.newHashMap();
 
-    public StatusResource() {
+    public StatusRestService() {
         Unit u1 = new Unit(1L,"Jenkins", "bla bla bla", UnitState.GREEN, new ArrayList<>());
         Unit u2 = new Unit(2L, "LogStash", "bla bla bla", UnitState.GREEN, new ArrayList<>());
         Unit u3 = new Unit(3L, "Jenkins 2", "bla bla bla", UnitState.BLACK, new ArrayList<>());
