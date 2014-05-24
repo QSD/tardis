@@ -1,21 +1,16 @@
 package nl.qsd.tardis.backend.status;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 import java.util.List;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+@JsonSerialize
 public class Unit {
 
-    @JsonProperty
     private Long id;
-    @JsonProperty
     private String name;
-    @JsonProperty
     private String description;
-    @JsonProperty
     private UnitState state;
-    @JsonSerialize(contentAs = Unit.class)
     private List<Unit> units;
 
     public Unit(Long id, String name, String description, UnitState state, List<Unit> units) {
