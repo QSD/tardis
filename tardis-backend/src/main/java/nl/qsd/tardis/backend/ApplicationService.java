@@ -1,5 +1,6 @@
 package nl.qsd.tardis.backend;
 
+import com.hubspot.dropwizard.guice.GuiceBundle;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -18,8 +19,6 @@ public class ApplicationService extends Application<TardisConfiguration> {
 			Bootstrap<TardisConfiguration> bootstrap) {
 		GuiceBundle<TardisConfiguration> guiceBundle = GuiceBundle
 				.<TardisConfiguration> newBuilder()
-				// TODO: add module
-				.addModule(new HelloWorldModule())
 				.setConfigClass(TardisConfiguration.class).build();
 
         System.out.println("tardis initialize ");
