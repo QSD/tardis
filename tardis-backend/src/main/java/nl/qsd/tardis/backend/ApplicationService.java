@@ -3,6 +3,7 @@ package nl.qsd.tardis.backend;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import nl.qsd.tardis.backend.status.DatabaseHealthCheck;
 import nl.qsd.tardis.backend.status.StatusResource;
 
 public class ApplicationService extends Application<TardisConfiguration> {
@@ -23,7 +24,9 @@ public class ApplicationService extends Application<TardisConfiguration> {
 
         System.out.println("tardis service ");
 //        final Thingy thingy = config.getThingyFactory().build();
-//        environment.jersey().register(new ThingyResource(thingy));
+
+        environment.jersey().register(new StatusResource());
+        environment.jersey().register(new DatabaseHealthCheck());
 
     }
 }
