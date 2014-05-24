@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('NightWhistler.TardisFrontend')
+angular.module('QSD.Tardis')
