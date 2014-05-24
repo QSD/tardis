@@ -5,10 +5,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import io.dropwizard.jersey.caching.CacheControl;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +13,6 @@ import java.util.Map;
 
 @Path("/status")
 @Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
 public class StatusRestService implements Status {
 
     static int i;
@@ -58,7 +54,7 @@ public class StatusRestService implements Status {
     @Path("/{unit}")
     @Timed
     @CacheControl(noCache = true)
-    public Unit getUnit(long unit) {
+    public Unit getUnit(@PathParam("unit") long unit) {
         return units.get(unit);
     }
 
