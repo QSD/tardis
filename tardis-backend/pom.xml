@@ -10,6 +10,34 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>tardis-backend</artifactId>
+    <packaging>war</packaging>
 
+    <properties>
+        <dependency.dropwizard.version>0.7.0</dependency.dropwizard.version>
+        <dependency.guice.version>3.0</dependency.guice.version>
+        <dependency.jetty.version>6.1.25</dependency.jetty.version>
+    </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>io.dropwizard</groupId>
+            <artifactId>dropwizard-core</artifactId>
+            <version>${dependency.dropwizard.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>${dependency.guice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hubspot.dropwizard</groupId>
+            <artifactId>dropwizard-guice</artifactId>
+            <version>0.7.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mortbay.jetty</groupId>
+            <artifactId>jetty</artifactId>
+            <version>${dependency.jetty.version}</version>
+        </dependency>
+    </dependencies>
 </project>
