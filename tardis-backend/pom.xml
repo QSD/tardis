@@ -20,6 +20,7 @@
         <dependency.dropwizard.version>0.7.0</dependency.dropwizard.version>
         <dependency.guice.version>3.0</dependency.guice.version>
         <dependency.jetty.version>6.1.25</dependency.jetty.version>
+        <dependency.dropwizard-guice.version>0.7.0.2</dependency.dropwizard-guice.version>
     </properties>
 
     <build>
@@ -78,6 +79,11 @@
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
             <version>${dependency.guice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hubspot.dropwizard</groupId>
+            <artifactId>dropwizard-guice</artifactId>
+            <version>${dependency.dropwizard-guice.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mortbay.jetty</groupId>
