@@ -8,7 +8,7 @@ public enum Profile {
 
 	PLAIN_TEXT(
 			"Plain text",
-			"Just a bunch of text."
+			"A value of 'just a bunch of text'."
 			),
 	TRAFFIC_LIGHT(
 			"Traffic light",
@@ -17,12 +17,12 @@ public enum Profile {
 
 	private String displayName;
 	private String description;
-	
+
 	private Profile(String displayName, String description) {
 		this.displayName = displayName;
 		this.description = description;
 	}
-	
+
 	@JsonSerialize
 	public String getName() {
 		return this.toString();
@@ -32,7 +32,7 @@ public enum Profile {
 	public String getDisplayName() {
 		return displayName;
 	}
-	
+
 	@JsonSerialize
 	public String getDescription() {
 		return description;

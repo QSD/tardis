@@ -1,17 +1,20 @@
 package nl.qsd.tardis.backend.status;
 
-import com.codahale.metrics.annotation.Timed;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import io.dropwizard.jersey.caching.CacheControl;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
+import com.codahale.metrics.annotation.Timed;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 @Path("/status")
 @Produces(MediaType.APPLICATION_JSON)
@@ -36,7 +39,8 @@ public class StatusRestService implements Status {
         units.put(u5.getId(), u5);
     }
 
-    @GET
+    @Override
+	@GET
     @Path("/counter")
     @Timed
     @CacheControl(noCache = true)
