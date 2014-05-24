@@ -1,16 +1,15 @@
 package nl.qsd.tardis.backend;
 
-import com.hubspot.dropwizard.guice.GuiceBundle;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import nl.qsd.tardis.backend.status.DatabaseHealthCheckRestService;
 import nl.qsd.tardis.backend.status.StatusModule;
+
+import com.hubspot.dropwizard.guice.GuiceBundle;
 
 public class ApplicationService extends Application<TardisConfiguration> {
 
     public static void main(String[] args) throws Exception {
-        System.out.println("ping");
         new ApplicationService().run(args);
     }
 
@@ -26,11 +25,6 @@ public class ApplicationService extends Application<TardisConfiguration> {
     }
 
     @Override
-    public void run(TardisConfiguration tardisConfiguration,
-                    Environment environment) throws Exception {
-        System.out.println("tardis service ");
-
-        environment.jersey().register(new DatabaseHealthCheckRestService());
-
+    public void run(TardisConfiguration tardisConfiguration, Environment environment) throws Exception {
     }
 }
