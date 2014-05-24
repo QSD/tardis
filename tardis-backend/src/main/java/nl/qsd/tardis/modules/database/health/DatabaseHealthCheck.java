@@ -1,4 +1,4 @@
-package nl.qsd.tardis.backend.status;
+package nl.qsd.tardis.modules.database.health;
 
 import com.codahale.metrics.health.HealthCheck;
 

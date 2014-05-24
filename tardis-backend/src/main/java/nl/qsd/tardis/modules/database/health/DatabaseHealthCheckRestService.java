@@ -1,9 +1,9 @@
-package nl.qsd.tardis.backend.status;
+package nl.qsd.tardis.modules.database.health;
 
 import com.codahale.metrics.health.HealthCheck;
 import io.dropwizard.jersey.caching.CacheControl;
+import nl.qsd.tardis.modules.database.health.DatabaseHealthCheck;
 
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;

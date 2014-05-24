@@ -4,10 +4,8 @@ import com.hubspot.dropwizard.guice.GuiceBundle;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import nl.qsd.tardis.backend.status.DatabaseHealthCheckRestService;
 import nl.qsd.tardis.backend.status.StatusModule;
-
-import com.hubspot.dropwizard.guice.GuiceBundle;
+import nl.qsd.tardis.modules.database.DatabaseModule;
 
 public class ApplicationService extends Application<TardisConfiguration> {
 
@@ -20,6 +18,7 @@ public class ApplicationService extends Application<TardisConfiguration> {
     public void initialize(Bootstrap<TardisConfiguration> bootstrap) {
         GuiceBundle<TardisConfiguration> guiceBundle = GuiceBundle.<TardisConfiguration>newBuilder()
                 .addModule(new StatusModule())
+                .addModule(new DatabaseModule())
                 .enableAutoConfig(getClass().getPackage().getName())
                 .setConfigClass(TardisConfiguration.class)
                 .build();
