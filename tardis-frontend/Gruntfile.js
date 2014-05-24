@@ -1,4 +1,4 @@
-// Generated on <%= (new Date).toISOString().split('T')[0] %> using <%= pkg.name %> <%= pkg.version %>
+// Generated on 2014-05-24 using generator-angular-bootstrap 0.4.1
 'use strict';
 
 // # Globbing
@@ -20,11 +20,11 @@ module.exports = function(grunt) {
     bower: require('./bower.json'),
     meta: {
       banner: '/**\n' +
-      ' * <%%= pkg.name %>\n' +
-      ' * @version v<%%= pkg.version %> - <%%= grunt.template.today("yyyy-mm-dd") %>\n' +
-      ' * @link <%%= pkg.homepage %>\n' +
-      ' * @author <%%= pkg.author.name %> <<%%= pkg.author.email %>>\n' +
-      ' * @license <%= props.license %> License, http://www.opensource.org/licenses/<%= props.license %>\n' +
+      ' * <%= pkg.name %>\n' +
+      ' * @version v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n' +
+      ' * @link <%= pkg.homepage %>\n' +
+      ' * @author <%= pkg.author.name %> <<%= pkg.author.email %>>\n' +
+      ' * @license Apache License, http://www.opensource.org/licenses/Apache\n' +
       ' */\n'
     },
 
@@ -36,48 +36,32 @@ module.exports = function(grunt) {
     },
 
     // Watches files for changes and runs tasks based on the changed files
-    watch: {<% if (props.jsPreprocessor === 'coffee') { %>
+    watch: {
       // coffee: {
-      //   files: ['<%%= yo.app %>/scripts/{,*/}*.{coffee,litcoffee,coffee.md}'],
+      //   files: ['<%= yo.app %>/scripts/{,*/}*.{coffee,litcoffee,coffee.md}'],
       //   tasks: ['newer:coffee:dist']
       // },
       coffeeTest: {
         files: ['test/spec/{,*/}*.{coffee,litcoffee,coffee.md}'],
         tasks: ['newer:coffee:test', 'karma']
-      },<% } else { %>
-      // js: {
-      //   files: ['<%%= yo.app %>/scripts/{,*/}*.js'],
-      //   tasks: ['newer:jshint:all']
-      // },
-      jsTest: {
-        files: ['test/spec/{,*/}*.js'],
-        tasks: ['newer:jshint:test', 'karma']
-      },<% } %><% if (props.cssPreprocessor === 'less') { %>
+      },
       less: {
-        files: ['<%%= yo.app %>/styles/{,*/}*.less'],
+        files: ['<%= yo.app %>/styles/{,*/}*.less'],
         tasks: ['less:dev', 'autoprefixer']
-      },<% } else if (props.cssPreprocessor === 'compass') { %>
-      compass: {
-        files: ['<%%= yo.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['compass:dev', 'autoprefixer']
-      },<% } else { %>
-      styles: {
-        files: ['<%%= yo.app %>/styles/{,*/}*.css'],
-        tasks: ['newer:copy:styles', 'autoprefixer']
-      },<% } %>
+      },
       gruntfile: {
         files: ['Gruntfile.js']
       },
       livereload: {
         options: {
-          livereload: '<%%= connect.options.livereload %>'
+          livereload: '<%= connect.options.livereload %>'
         },
         files: [
-          '<%%= yo.app %>/*.html',
-          '<%%= yo.app %>/views/{,*/}*.html',
+          '<%= yo.app %>/*.html',
+          '<%= yo.app %>/views/{,*/}*.html',
           '.tmp/styles/{,*/}*.css',
           '.tmp/scripts/{,*/}*.js',
-          '<%%= yo.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+          '<%= yo.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
     },
@@ -95,7 +79,7 @@ module.exports = function(grunt) {
           open: true,
           base: [
             '.tmp',
-            '<%%= yo.app %>'
+            '<%= yo.app %>'
           ]
         }
       },
@@ -105,13 +89,13 @@ module.exports = function(grunt) {
           base: [
             '.tmp',
             'test',
-            '<%%= yo.app %>'
+            '<%= yo.app %>'
           ]
         }
       },
       dist: {
         options: {
-          base: '<%%= yo.dist %>'
+          base: '<%= yo.dist %>'
         }
       }
     },
@@ -123,15 +107,8 @@ module.exports = function(grunt) {
         reporter: require('jshint-stylish')
       },
       all: [
-        'Gruntfile.js',<% if (props.jsPreprocessor === 'none') { %>
-        '<%%= yo.app %>/scripts/{,*/}*.js'<% } %>
-      ]<% if (props.jsPreprocessor === 'none') { %>,
-      test: {
-        options: {
-          jshintrc: 'test/.jshintrc'
-        },
-        src: ['test/spec/{,*/}*.js']
-      }<% } %>
+        'Gruntfile.js',
+      ]
     },
 
     // Empties folders to start fresh
@@ -141,8 +118,8 @@ module.exports = function(grunt) {
           dot: true,
           src: [
             '.tmp',
-            '<%%= yo.dist %>/*',
-            '!<%%= yo.dist %>/.git*'
+            '<%= yo.dist %>/*',
+            '!<%= yo.dist %>/.git*'
           ]
         }]
       },
@@ -167,12 +144,12 @@ module.exports = function(grunt) {
     // Automatically inject Bower components into the app
     bowerInstall: {
       app: {
-        src: '<%%= yo.app %>/index.html',
-        ignorePath: '<%%= yo.app %>/',
+        src: '<%= yo.app %>/index.html',
+        ignorePath: '<%= yo.app %>/',
         exclude: ['bower_components/jquery/jquery.js', 'bower_components/bootstrap/dist/js/bootstrap.js']
       }
     },
-<% if (props.jsPreprocessor === 'coffee') { %>    // Compiles CoffeeScript to JavaScript
+    // Compiles CoffeeScript to JavaScript
     coffee: {
       options: {
         sourceMap: true,
@@ -181,7 +158,7 @@ module.exports = function(grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%%= yo.app %>/scripts',
+          cwd: '<%= yo.app %>/scripts',
           src: '{,*/}*.coffee',
           dest: '.tmp/scripts',
           ext: '.js'
@@ -196,8 +173,8 @@ module.exports = function(grunt) {
           ext: '.js'
         }]
       }
-    },<% } %>
-<% if (props.cssPreprocessor === 'less') { %>    // Compiles Less to CSS and generates necessary files if requested
+    },
+    // Compiles Less to CSS and generates necessary files if requested
     less: {
       options: {
       },
@@ -207,7 +184,7 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%%= yo.app %>/styles',
+          cwd: '<%= yo.app %>/styles',
           src: '*.less',
           dest: '.tmp/styles',
           ext: '.css'
@@ -219,50 +196,23 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%%= yo.app %>/styles',
+          cwd: '<%= yo.app %>/styles',
           src: '*.less',
           dest: '.tmp/styles',
           ext: '.css'
         }]
       }
-    },<% } else if (props.cssPreprocessor === 'compass') { %>    // Compiles Sass to CSS and generates necessary files if requested
-    compass: {
-      options: {
-        sassDir: '<%%= yo.app %>/styles',
-        cssDir: '.tmp/styles',
-        generatedImagesDir: '.tmp/images/generated',
-        imagesDir: '<%%= yo.app %>/images',
-        javascriptsDir: '<%%= yo.app %>/scripts',
-        fontsDir: '<%%= yo.app %>/styles/fonts',
-        importPath: '<%%= yo.app %>/bower_components',
-        httpImagesPath: '/images',
-        httpGeneratedImagesPath: '/images/generated',
-        httpFontsPath: '/styles/fonts',
-        relativeAssets: false,
-        assetCacheBuster: false,
-        raw: 'Sass::Script::Number.precision = 10\n'
-      },
-      dist: {
-        options: {
-          generatedImagesDir: '<%%= yo.dist %>/images/generated'
-        }
-      },
-      dev: {
-        options: {
-          debugInfo: true
-        }
-      }
-    },<% } %>
+    },
 
     // Renames files for browser caching purposes
     rev: {
       dist: {
         files: {
           src: [
-            '<%%= yo.dist %>/scripts/{,*/}*.js',
-            '<%%= yo.dist %>/styles/{,*/}*.css',
-            '<%%= yo.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-            '<%%= yo.dist %>/styles/fonts/*'
+            '<%= yo.dist %>/scripts/{,*/}*.js',
+            '<%= yo.dist %>/styles/{,*/}*.css',
+            '<%= yo.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+            '<%= yo.dist %>/styles/fonts/*'
           ]
         }
       }
@@ -272,9 +222,9 @@ module.exports = function(grunt) {
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
     useminPrepare: {
-      html: '<%%= yo.app %>/index.html',
+      html: '<%= yo.app %>/index.html',
       options: {
-        dest: '<%%= yo.dist %>',
+        dest: '<%= yo.dist %>',
         flow: {
           html: {
             steps: {
@@ -289,26 +239,26 @@ module.exports = function(grunt) {
 
     // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
-      html: ['<%%= yo.dist %>/{,*/}*.html'],
-      css: ['<%%= yo.dist %>/styles/{,*/}*.css'],
+      html: ['<%= yo.dist %>/{,*/}*.html'],
+      css: ['<%= yo.dist %>/styles/{,*/}*.css'],
       options: {
-        assetsDirs: ['<%%= yo.dist %>']
+        assetsDirs: ['<%= yo.dist %>']
       }
     },
 
     // The following *-min tasks produce minified files in the dist folder
     cssmin: {
       options: {
-        root: '<%%= yo.app %>'
+        root: '<%= yo.app %>'
       }
     },
     imagemin: {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%%= yo.app %>/images',
+          cwd: '<%= yo.app %>/images',
           src: '{,*/}*.{png,jpg,jpeg,gif}',
-          dest: '<%%= yo.dist %>/images'
+          dest: '<%= yo.dist %>/images'
         }]
       }
     },
@@ -316,9 +266,9 @@ module.exports = function(grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%%= yo.app %>/images',
+          cwd: '<%= yo.app %>/images',
           src: '{,*/}*.svg',
-          dest: '<%%= yo.dist %>/images'
+          dest: '<%= yo.dist %>/images'
         }]
       }
     },
@@ -332,9 +282,9 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%%= yo.dist %>',
+          cwd: '<%= yo.dist %>',
           src: ['*.html', 'views/{,*/}*.html'],
-          dest: '<%%= yo.dist %>'
+          dest: '<%= yo.dist %>'
         }]
       }
     },
@@ -356,7 +306,7 @@ module.exports = function(grunt) {
     // Replace Google CDN references
     cdnify: {
       dist: {
-        html: ['<%%= yo.dist %>/*.html']
+        html: ['<%= yo.dist %>/*.html']
       }
     },
 
@@ -366,8 +316,8 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           dot: true,
-          cwd: '<%%= yo.app %>',
-          dest: '<%%= yo.dist %>',
+          cwd: '<%= yo.app %>',
+          dest: '<%= yo.dist %>',
           src: [
             '*.{ico,png,txt}',
             '.htaccess',
@@ -380,13 +330,13 @@ module.exports = function(grunt) {
         }, {
           expand: true,
           cwd: '.tmp/images',
-          dest: '<%%= yo.dist %>/images',
+          dest: '<%= yo.dist %>/images',
           src: ['generated/*']
         }]
       },
       styles: {
         expand: true,
-        cwd: '<%%= yo.app %>/styles',
+        cwd: '<%= yo.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
       }
@@ -394,23 +344,17 @@ module.exports = function(grunt) {
 
     // Run some tasks in parallel to speed up the build process
     concurrent: {
-      server: [<% if (props.jsPreprocessor === 'coffee') { %>
-        'coffee:dist',<% } %><% if (props.cssPreprocessor === 'less') { %>
-        'less:dev'<% } else if (props.cssPreprocessor === 'compass') { %>
-        'compass:dev'<% } else { %>
-        'copy:styles'<% } %>
+      server: [
+        'coffee:dist',
+        'less:dev'
       ],
-      test: [<% if (props.jsPreprocessor === 'coffee') { %>
-        'coffee',<% } %><% if (props.cssPreprocessor === 'less') { %>
-        'less'<% } else if (props.cssPreprocessor === 'compass') { %>
-        'compass'<% } else { %>
-        'copy:styles'<% } %>
+      test: [
+        'coffee',
+        'less'
       ],
-      dist: [<% if (props.jsPreprocessor === 'coffee') { %>
-        'coffee',<% } %><% if (props.cssPreprocessor === 'less') { %>
-        'less:dist',<% } else if (props.cssPreprocessor === 'compass') { %>
-        'compass:dist',<% } else { %>
-        'copy:styles',<% } %>
+      dist: [
+        'coffee',
+        'less:dist',
         'imagemin',
         'svgmin'
       ]

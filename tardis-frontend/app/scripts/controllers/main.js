@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('<%= props.moduleName %>')
+angular.module('NightWhistler.TardisFrontend')
 
   .controller('MainCtrl', function($scope, $location, version) {
 

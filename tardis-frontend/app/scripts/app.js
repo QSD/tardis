@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('<%= props.moduleName %>', [<%= props.appModules.length ? '\'' + props.appModules.join('\', \'') + '\'' : '' %>])
+angular.module('NightWhistler.TardisFrontend', ['ngAnimate', 'ngResource', 'ngRoute'])
 
-  .constant('version', 'v<%= props.version %>')
-<% if(props.ngModules.indexOf('route') !== -1) { %>
+  .constant('version', 'v0.1.0')
+
   .config(function($locationProvider, $routeProvider) {
 
     $locationProvider.html5Mode(false);
@@ -23,10 +23,4 @@ angular.module('<%= props.moduleName %>', [<%= props.appModules.length ? '\'' + 
       });
 
   });
-<% } else { %>
-  .config(function($locationProvider) {
 
-    $locationProvider.html5Mode(false);
-
-  });
-<% } %>

@@ -1,0 +1,33 @@
+{
+  "name": "tardis-frontend",
+  "version": "0.1.0",
+  "description": "Yet another amazing AngularJS app",
+  "keywords": [
+    "angular"
+  ],
+  "homepage": "https://github.com/NightWhistler/tardis-frontend",
+  "bugs": "https://github.com/NightWhistler/tardis-frontend/issues",
+  "author": {
+    "name": "Alex Kuiper",
+    "email": "alex@nightwhistler.net",
+    "url": "https://github.com/NightWhistler"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NightWhistler/tardis-frontend.git"
+  },
+  "licenses": [
+    {
+      "type": "Apache"
+    }
+  ],
+  "dependencies": {
+    "bootstrap": "3.1.1",
+    "bootstrap-additions": "0.2.2",
+    "angular-animate": "^1.2.16",
+    "angular-i18n": "^1.2.16",
+    "angular-resource": "^1.2.16",
+    "angular-route": "^1.2.16",
+    "angular": "^1.2.16"
+  }
+}
