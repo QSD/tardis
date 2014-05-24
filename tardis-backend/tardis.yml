@@ -1,0 +1,19 @@
+defaultName: Stranger
+
+http:
+    connectorType: nonblocking+ssl
+    port: 8088
+
+# Logging settings.
+logging:
+  # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
+  level: INFO
+
+  # Logger-specific levels.
+  loggers:
+
+    # Sets the level for 'com.example.app' to DEBUG.
+    nl.qsd: DEBUG
+
+  appenders:
+    - type: console
