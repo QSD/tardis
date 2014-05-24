@@ -10,9 +10,25 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import nl.qsd.tardis.backend.TardisRestService;
+import nl.qsd.tardis.backend.status.StatusModule;
+
+import com.google.inject.Inject;
+
 @Path("/meta")
 @Produces(MediaType.APPLICATION_JSON)
-public class MetaRestService implements Meta {
+public class MetaRestService implements Meta, TardisRestService {
+
+	@Inject
+	private MetaModule metaModule;
+
+	@Inject
+	private StatusModule statusModule;
+
+	@Override
+	public Collection<Profile> getProfiles() {
+		return Arrays.asList(Profile.PLAIN_TEXT);
+	}
 
     @GET
     @Path("/profiles")
@@ -20,6 +36,15 @@ public class MetaRestService implements Meta {
     @Override
     public Collection<Profile> profiles() {
     	return Arrays.asList(Profile.values());
+    }
+
+    @GET
+    @Path("/modules")
+    @CacheControl(noCache = true)
+    @Override
+    public Collection<Module> modules() {
+    	//TODO: Find a dynamic way to detect all available modules.
+    	return Arrays.asList((Module) metaModule, (Module) statusModule);
     }
 
 }
