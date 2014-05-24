@@ -11,4 +11,62 @@
         <module>tardis-backend</module>
     </modules>
     <packaging>pom</packaging>
+    
+    <properties>
+        <build.source.version>1.7</build.source.version>
+        <build.binary.version>1.7</build.binary.version>
+        <build.encoding>UTF-8</build.encoding>
+        <build.debug>true</build.debug>
+        <dependency.jetty.version>6.1.25</dependency.jetty.version>
+    </properties>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.1</version>
+                    <configuration>
+                        <debug>${build.debug}</debug>
+                        <source>${build.source.version}</source>
+                        <target>${build.binary.version}</target>
+                        <encoding>${build.encoding}</encoding>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>2.4</version>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            </manifest>
+                        </archive>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.dropwizard</groupId>
+                <artifactId>dropwizard-core</artifactId>
+                <version>0.7.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.inject</groupId>
+                <artifactId>guice</artifactId>
+                <version>3.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hubspot.dropwizard</groupId>
+                <artifactId>dropwizard-guice</artifactId>
+                <version>0.7.0.2</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

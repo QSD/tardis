@@ -12,42 +12,8 @@
     <artifactId>tardis-backend</artifactId>
     <packaging>jar</packaging>
 
-    <properties>
-        <build.source.version>1.7</build.source.version>
-        <build.binary.version>1.7</build.binary.version>
-        <build.encoding>UTF-8</build.encoding>
-        <build.debug>true</build.debug>
-        <dependency.dropwizard.version>0.7.0</dependency.dropwizard.version>
-        <dependency.guice.version>3.0</dependency.guice.version>
-        <dependency.jetty.version>6.1.25</dependency.jetty.version>
-        <dependency.dropwizard-guice.version>0.7.0.2</dependency.dropwizard-guice.version>
-    </properties>
-
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <debug>${build.debug}</debug>
-                    <source>${build.source.version}</source>
-                    <target>${build.binary.version}</target>
-                    <encoding>${build.encoding}</encoding>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -82,35 +48,21 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <!-- You'll probably want to remove this for your project. I'm just using it here
-so that dropwizard-example doesn't get deployed as a library. -->
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.7</version>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 
     <dependencies>
         <dependency>
             <groupId>io.dropwizard</groupId>
-            <artifactId>dropwizard-core</artifactId>
-            <version>${dependency.dropwizard.version}</version>
+            <artifactId>dropwizard-core</artifactId>          
         </dependency>
         <dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
-            <version>${dependency.guice.version}</version>
         </dependency>
         <dependency>
             <groupId>com.hubspot.dropwizard</groupId>
             <artifactId>dropwizard-guice</artifactId>
-            <version>${dependency.dropwizard-guice.version}</version>
         </dependency>
-
     </dependencies>
 </project>
