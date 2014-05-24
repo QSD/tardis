@@ -5,16 +5,16 @@
   "keywords": [
     "angular"
   ],
-  "homepage": "https://github.com/NightWhistler/tardis-frontend",
-  "bugs": "https://github.com/NightWhistler/tardis-frontend/issues",
+  "homepage": "https://github.com/QSD/tardis/tardis-frontend",
+  "bugs": "https://github.com/QSD/tardis/issues",
   "author": {
     "name": "Alex Kuiper",
     "email": "alex@nightwhistler.net",
-    "url": "https://github.com/NightWhistler"
+    "url": "https://github.com/QSD/tardis"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/NightWhistler/tardis-frontend.git"
+    "url": "https://github.com/QSD/tardis.git"
   },
   "licenses": [
     {
@@ -28,6 +28,7 @@
     "angular-i18n": "^1.2.16",
     "angular-resource": "^1.2.16",
     "angular-route": "^1.2.16",
-    "angular": "^1.2.16"
+    "angular": "^1.2.16",
+    "xcharts": "https://github.com/vperron/bower-xcharts"
   }
 }

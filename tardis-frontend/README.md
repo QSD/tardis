@@ -1,12 +1,15 @@
-# TardisFrontend
+# Tardis Frontend
 
-Yet another amazing AngularJS app
+## installation
 
-## Getting Started
+bower install
+bower install angular-charts
 
-## Documentation
-_(Coming soon)_
+## Libraries used:
 
-## Examples
-_(Coming soon)_
+Chart library:
+- xcharts http://tenxer.github.io/xcharts/
+- d3
+
+
 
