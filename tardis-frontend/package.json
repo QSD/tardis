@@ -38,6 +38,7 @@
     "grunt-contrib-less": "^0.11.0",
     "grunt-contrib-uglify": "^0.4.0",
     "grunt-contrib-watch": "^0.6.1",
+    "grunt-contrib-coffee": "latest",
     "grunt-karma": "^0.8.3",
     "grunt-newer": "^0.7.0",
     "grunt-nginclude": "^0.4.1",
