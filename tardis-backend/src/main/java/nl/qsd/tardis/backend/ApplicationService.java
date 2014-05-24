@@ -4,8 +4,15 @@ import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
+import java.util.EnumSet;
+
+import javax.servlet.DispatcherType;
+
+import org.eclipse.jetty.servlets.CrossOriginFilter;
+
 import com.google.inject.AbstractModule;
 import com.hubspot.dropwizard.guice.GuiceBundle;
+
 
 public class ApplicationService extends Application<TardisConfiguration> {
 
@@ -31,5 +38,12 @@ public class ApplicationService extends Application<TardisConfiguration> {
 
     @Override
     public void run(TardisConfiguration tardisConfiguration, Environment environment) throws Exception {
+        environment.servlets()
+                .addFilter("Custom-Filter-Name", new CrossOriginFilter())
+                .addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
+//        filterConfig.setInitParam(CrossOriginFilter.ALLOWED_ORIGINS_PARAM, "*");
+//        filterConfig.setInitParam("Access-Control-Allow-Credentials", "*");
+//        filterConfig.setInitParam("Access-Control-Allow-Methods", "*");
+
     }
 }
