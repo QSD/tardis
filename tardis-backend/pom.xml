@@ -12,6 +12,17 @@
     <artifactId>tardis-backend</artifactId>
     <packaging>war</packaging>
 
+    <properties>
+        <build.source.version>1.8</build.source.version>
+        <build.binary.version>1.8</build.binary.version>
+        <build.encoding>UTF-8</build.encoding>
+        <build.debug>true</build.debug>
+        <dependency.dropwizard.version>0.7.0</dependency.dropwizard.version>
+        <dependency.guice.version>3.0</dependency.guice.version>
+        <dependency.jetty.version>6.1.25</dependency.jetty.version>
+        <dependency.dropwizard-guice.version>0.7.0.2</dependency.dropwizard-guice.version>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
@@ -19,19 +30,44 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <debug>true</debug>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <debug>${build.debug}</debug>
+                    <source>${build.source.version}</source>
+                    <target>${build.binary.version}</target>
+                    <encoding>${build.encoding}</encoding>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-jetty-plugin</artifactId>
+                <version>${dependency.jetty.version}</version>
+                <configuration>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <stopKey>stop</stopKey>
+                    <stopPort>9999</stopPort>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>start-jetty</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <scanIntervalSeconds>0</scanIntervalSeconds>
+                            <daemon>true</daemon>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>stop-jetty</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
-
-    <properties>
-        <dependency.dropwizard.version>0.7.0</dependency.dropwizard.version>
-        <dependency.guice.version>3.0</dependency.guice.version>
-        <dependency.jetty.version>6.1.25</dependency.jetty.version>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -47,7 +83,7 @@
         <dependency>
             <groupId>com.hubspot.dropwizard</groupId>
             <artifactId>dropwizard-guice</artifactId>
-            <version>0.7.0.2</version>
+            <version>${dependency.dropwizard-guice.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mortbay.jetty</groupId>
