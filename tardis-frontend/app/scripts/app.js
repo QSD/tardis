@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('QSD.Tardis', ['ngAnimate', 'ngResource', 'ngRoute'])
+angular.module('QSD.Tardis', ['ngAnimate', 'ngResource', 'ngRoute', 'restangular'])
 
   .constant('version', 'v0.1.0')
 

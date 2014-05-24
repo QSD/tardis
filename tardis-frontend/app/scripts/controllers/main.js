@@ -2,26 +2,15 @@
 
 angular.module('QSD.Tardis')
 
-  .controller('MainCtrl', function($scope, $location, version) {
+    .controller('MainCtrl',  ['$scope', 'Restangular', function($scope, Restangular) {
 
-    console.log( "Inside main controller");
+        console.log( "Inside main controller");
+        console.log( Restangular );
 
-    $scope.$path = $location.path.bind($location);
-    $scope.version = version;
+        Restangular.all( 'lights.json').getList().then( function(result) {
+            $scope.lights = result;
+        });
 
-    $scope.lights = [
-        {
-            name: "Aap",
-            colour: "green"
-        },
-        {
-            name: "Noot",
-            colour: "orange"
-        },
-        {
-            name: "Mies",
-            colour: "red"
-        }
-    ];
+        console.log( "End of controller" );
 
-  });
+}]);
