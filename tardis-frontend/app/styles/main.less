@@ -161,3 +161,40 @@ body {
     width: 700px;
   }
 }
+
+@box-border-color: #8c8c8c;
+@box-background-color: #333333;
+
+.box {
+  border-style: solid;
+  border-width: 0.1em;
+  border-color: @box-border-color;
+  padding: 0.5em;
+}
+
+.box h1 {
+  text-align: left;  
+}
+
+.traffic {
+  text-align: right;
+}
+
+.box:hover {
+  background-position: center;
+  background-image: url(../images/icons/cog-4x.png);
+  background-color: lighten(@box-background-color, 10%);
+  background-repeat: no-repeat;
+}
+
+.status-green {
+  background-color: green;
+}
+
+.status-orange {
+  background-color: orange;
+}
+
+.status-red {
+  background-color: red;
+}

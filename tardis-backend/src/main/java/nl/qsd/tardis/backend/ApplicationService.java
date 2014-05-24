@@ -7,6 +7,8 @@ import io.dropwizard.setup.Environment;
 import nl.qsd.tardis.backend.status.DatabaseHealthCheckRestService;
 import nl.qsd.tardis.backend.status.StatusModule;
 
+import com.hubspot.dropwizard.guice.GuiceBundle;
+
 public class ApplicationService extends Application<TardisConfiguration> {
 
     public static void main(String[] args) throws Exception {
@@ -26,11 +28,6 @@ public class ApplicationService extends Application<TardisConfiguration> {
     }
 
     @Override
-    public void run(TardisConfiguration tardisConfiguration,
-                    Environment environment) throws Exception {
-        System.out.println("tardis service ");
-//        final Thingy thingy = config.getThingyFactory().build();
-
-
+    public void run(TardisConfiguration tardisConfiguration, Environment environment) throws Exception {
     }
 }
