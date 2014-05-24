@@ -2,15 +2,18 @@
 
 angular.module('QSD.Tardis')
 
-    .controller('MainCtrl',  ['$scope', 'Restangular', function($scope, Restangular) {
+    .controller('MainCtrl',  ['$scope', 'backendService', function($scope, backendService) {
 
         console.log( "Inside main controller");
-        console.log( Restangular );
 
-        Restangular.all( 'lights.json').getList().then( function(result) {
+
+        backendService.getLights().then(function(result) {
+            console.log( result );
             $scope.lights = result;
+
+            console.log( "Got results" );
         });
 
-        console.log( "End of controller" );
 
+        console.log( "End of controller" );
 }]);
