@@ -1,16 +1,18 @@
 package nl.qsd.tardis.backend;
 
-import com.hubspot.dropwizard.guice.GuiceBundle;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import nl.qsd.tardis.backend.status.StatusModule;
-import nl.qsd.tardis.modules.database.DatabaseModule;
-import org.eclipse.jetty.servlets.CrossOriginFilter;
-import org.reflections.util.FilterBuilder;
+
+import java.util.EnumSet;
 
 import javax.servlet.DispatcherType;
-import java.util.EnumSet;
+
+import org.eclipse.jetty.servlets.CrossOriginFilter;
+
+import com.google.inject.AbstractModule;
+import com.hubspot.dropwizard.guice.GuiceBundle;
+
 
 public class ApplicationService extends Application<TardisConfiguration> {
 
@@ -21,8 +23,12 @@ public class ApplicationService extends Application<TardisConfiguration> {
     @Override
     public void initialize(Bootstrap<TardisConfiguration> bootstrap) {
         GuiceBundle<TardisConfiguration> guiceBundle = GuiceBundle.<TardisConfiguration>newBuilder()
-                .addModule(new DatabaseModule())
-                .addModule(new StatusModule())
+                // No specific module needed, will auto detect them.
+        		.addModule(new AbstractModule() {
+                	@Override
+                	protected void configure() {
+                	}
+                })
                 .enableAutoConfig("nl.qsd.tardis")
                 .setConfigClass(TardisConfiguration.class)
                 .build();
