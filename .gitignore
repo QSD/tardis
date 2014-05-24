@@ -6,6 +6,7 @@ classes/
 out/
 .checkstyle
 .pmd
+.tmp/ 
 
 #####
 # Eclipse files and folders
