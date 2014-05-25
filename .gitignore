@@ -1,4 +1,5 @@
 node_modules
+*.orig
 
 #####
 # Build files and folders
