@@ -262,16 +262,16 @@ module.exports = function(grunt) {
         }]
       }
     },
-    svgmin: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= yo.app %>/images',
-          src: '{,*/}*.svg',
-          dest: '<%= yo.dist %>/images'
-        }]
-      }
-    },
+    // svgmin: {
+    //  dist: {
+    //    files: [{
+    //      expand: true,
+    //      cwd: '<%= yo.app %>/images',
+    //      src: '{,*/}*.svg',
+    //      dest: '<%= yo.dist %>/images'
+    //    }]
+    //  }
+    //}, 
     htmlmin: {
       dist: {
         options: {
