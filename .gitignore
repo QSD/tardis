@@ -29,3 +29,5 @@ dependency-reduced-pom.xml
 *.iwl
 *.ips
 *.iml
+/tardis-frontend/target-grunt/
+/target-grunt/

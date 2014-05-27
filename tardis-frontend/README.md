@@ -16,6 +16,14 @@ bower install angular-charts
 - bower  
 - grunt 
 
+Grunt works under maven, you can run grunt using:
+
+    mvn grunt:grunt -Dtarget=serve
+
+Or run grunt directly using:
+
+    grunt - serve
+
 ## libraries used
 
 Chart library:

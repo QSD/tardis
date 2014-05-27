@@ -32,7 +32,7 @@ module.exports = function(grunt) {
     yo: {
       // Configurable paths
       app: require('./bower.json').appPath || 'app',
-      dist: 'dist'
+      dist: 'src/main/webapp/static'
     },
 
     // Watches files for changes and runs tasks based on the changed files
@@ -354,9 +354,9 @@ module.exports = function(grunt) {
       ],
       dist: [
         'coffee',
-        'less:dist',
-        'imagemin',
-        'svgmin'
+        'less:dist'//,
+        //'imagemin',
+        //'svgmin'
       ]
     },
 
@@ -422,7 +422,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', [
     'newer:jshint',
-    'test',
+    //'test',
     'build'
   ]);
 
