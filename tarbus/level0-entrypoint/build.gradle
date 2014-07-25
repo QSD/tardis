@@ -1,0 +1,30 @@
+apply plugin: 'groovy'
+
+description = "Is the entrypoint of the Tarbus application."
+
+repositories {
+    mavenLocal()
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    mavenCentral()
+}
+
+ext {
+    libraries = [:]
+    versions = [:]
+}
+
+versions += [
+        vertx : '2.1.1',
+        vertxGroovy : '2.1.0-final',
+        tools : '2.0.3-final',
+]
+
+dependencies {
+    compile "org.codehaus.groovy:groovy-all:2.1.5"
+    compile "io.vertx:lang-groovy:${versions.vertxGroovy}"
+    compile "io.vertx:vertx-core:${versions.vertx}"
+    compile "io.vertx:vertx-platform:${versions.vertx}"
+
+    testCompile "io.vertx:testtools:${versions.tools}"
+}
+
