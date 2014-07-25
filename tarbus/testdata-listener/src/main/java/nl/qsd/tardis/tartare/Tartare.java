@@ -10,11 +10,30 @@ import java.net.URISyntaxException;
  */
 public class Tartare {
 
-    public void main(String[] args) throws IOException, URISyntaxException {
+    public static void main(String[] args) throws IOException, URISyntaxException {
+        new Tartare(args);
+    }
+
+    private int port = 2020;
+    
+    private String restUrl = "htpp://localhost:8080";
+    
+    public Tartare(String[] args) throws IOException, URISyntaxException {
+        parseArgs(args);        
+        listen(this.port, this.restUrl);
+    }        
+    
+    private void parseArgs(String[] args) {
+        if (args == null || args.length != 2) {
+            System.err.print("Usage: <port> <posturl>");
+            System.exit(1);
+        }
         
-        // parse arguments
-        int port = 2020;
-                
+        this.port = Integer.parseInt(args[0]);
+        this.restUrl = args[1];
+    }
+    
+    private void listen(int port, String restUrl) throws IOException, URISyntaxException {
         ServerSocket serverSocket = new ServerSocket(port);
         
         while (true) {
@@ -22,6 +41,6 @@ public class Tartare {
                     new Transformer("ivo",
                             new Poster(
                                     new URI("http://localhost:8080"))));
-        }        
+        }                
     }
 }
