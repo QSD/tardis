@@ -1,3 +1,5 @@
+# RUN_CONTAINER sudo docker run -d -P --name generator -v /data:/data register.dev.qsd.nl/generator
+
 FROM 	            nathwill/centos-small:6.5
 MAINTAINER          jeroen wijdemans
 
