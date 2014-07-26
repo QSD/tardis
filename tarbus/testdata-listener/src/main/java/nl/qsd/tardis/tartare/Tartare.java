@@ -2,6 +2,7 @@ package nl.qsd.tardis.tartare;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -13,41 +14,44 @@ public class Tartare {
     public static void main(String[] args) throws IOException, URISyntaxException {
         new Tartare(args);
     }
-
-    private int port = 2020;
-    
-    private String source = "tartare";
-    
-    private String restUrl = "htpp://localhost:8080";
     
     public Tartare(String[] args) throws IOException, URISyntaxException {
-        parseArgs(args);        
-        listen(this.port, this.source, this.restUrl);
+        parseArgs(args);                
     }        
     
-    private void parseArgs(String[] args) {
+    private void parseArgs(String[] args) throws IOException, URISyntaxException {
         if (args == null || args.length != 3) {
             System.err.print("Usage: <port> <source> <posturl>");
             System.exit(1);
         }
         
-        this.port = Integer.parseInt(args[0]);
-        this.source = args[1];
-        this.restUrl = args[2];
+        int port = Integer.parseInt(args[0]);
+        String source = args[1];
+        String restUrl = args[2];
+        
+        listen(port, source, restUrl);
     }
     
-    private void listen(int port, String source, String restUrl) throws IOException, URISyntaxException {
+    private void listen(final int port, final String source, final String restUrl) throws IOException, URISyntaxException {
         ServerSocket serverSocket = new ServerSocket(port);
         
         System.out.println("Listening to port " + port);
+        
         while (true) {
-            new SocketReader(serverSocket.accept().getInputStream(), 
-                    new Transformer(this.source,
-                            new Poster(
-                                    new URI(this.restUrl))))
-                    .push();
+            final Socket socket = serverSocket.accept();
             
-            System.out.println("Send event...");
+            new Thread(() -> {
+                try {
+                    new SocketReader(socket.getInputStream(), 
+                        new Transformer(source,
+                                new Poster(
+                                        new URI(restUrl))))
+                        .push();            
+                    }
+                    catch (Throwable t) {
+                        throw new RuntimeException(t);
+                    }
+                }).start();
         }                
     }
 }

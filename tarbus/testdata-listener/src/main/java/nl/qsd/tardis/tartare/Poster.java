@@ -35,10 +35,6 @@ public class Poster implements Pusher {
             System.err.println("Response code = " + urlConn.getResponseCode());
             System.err.println("Response code = " + urlConn.getResponseMessage());
         }
-        else {
-            System.err.println("--OK--");        
-        }
-        
         urlConn.disconnect();
     }
 }
