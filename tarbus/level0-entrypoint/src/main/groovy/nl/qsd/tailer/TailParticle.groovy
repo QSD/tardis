@@ -1,4 +1,4 @@
-package nl.wijdemans.tailer;
+package nl.qsd.tailer;
 
 import org.vertx.groovy.platform.Verticle
 

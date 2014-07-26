@@ -1,5 +1,6 @@
 # CREATE CONTAINER          docker build -t register.dev.qsd.nl/level0-entrypoint .
-# RUN CONTAINER             docker run -t -d 8080:8080 --name level0-entrypoint register.dev.qsd.nl/level0-entrypoint
+# RUN CONTAINER             docker run -t -i -p 8080:8080 p- 5701:5701  --name level0-entrypoint register.dev.qsd.nl/level0-entrypoint
+# RUN CONTAINER             docker run -t -i -p 8080:8080 p- 5701:5701 register.dev.qsd.nl/level0-entrypoint
 
 FROM dockerfile/java
 
@@ -17,6 +18,7 @@ ADD start-entrypoint.sh /root/
 
 # Expose
 EXPOSE 8080
+EXPOSE 5701
 
 # Run
 CMD ["/root/start-entrypoint.sh"]

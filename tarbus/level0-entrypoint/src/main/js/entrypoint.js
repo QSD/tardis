@@ -17,6 +17,5 @@ vertx.createHttpServer().requestHandler(function(req) {
         logger.info("Got " + req.method() + "request")
         req.response.status = 405
     }
-
     req.response.end();
-}).listen(8080, 'localhost');
+}).listen(8080, '0.0.0.0');
