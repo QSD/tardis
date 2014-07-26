@@ -1,6 +1,3 @@
-/**
- * Created by jeroen on 25-7-14.
- */
 var vertx = require('vertx');
 
 var eb = vertx.eventBus;
