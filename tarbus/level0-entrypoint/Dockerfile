@@ -14,7 +14,7 @@ ENV PATH $PATH:/usr/local/vert.x-2.1.2/bin
 # Add app
 ADD     src/main/js /opt/level0-entrypoint
 ADD     start-entrypoint.sh /root/
-ADD     tarbus-cluster.xml /usr/local/vert.x-2.1.2/cluster.xml
+ADD     tarbus-cluster.xml /usr/local/vert.x-2.1.2/conf/cluster.xml
 ADD     configuration.json /root/
 # Expose
 EXPOSE 8080
