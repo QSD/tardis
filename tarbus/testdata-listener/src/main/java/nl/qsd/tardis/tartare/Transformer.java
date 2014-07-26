@@ -7,32 +7,32 @@ import java.util.Date;
 /**
  * @author Ivo Limmen <ivo.limmen@qsd.nl>
  */
-public class Transformer {
+public class Transformer implements Pusher {
             
     private final String source;
     
-    private final Poster poster;
+    private final Pusher pusher;
     
-    public Transformer(final String source, final Poster poster) {
+    public Transformer(final String source, final Pusher pusher) {
         this.source= source;
-        this.poster = poster;
+        this.pusher = pusher;
     }
-    
-    public void transform(String text) throws IOException {
-        
+
+    @Override
+    public void push(String text) throws IOException {
         String encoded = Base64.getEncoder().encodeToString(text.getBytes());
         
         StringBuilder sb = new StringBuilder();
-        sb.append("{event: {");
-        sb.append("metadata:{");
-        sb.append("timestamp:");
+        sb.append("{\"event\": {");
+        sb.append("\"metadata\":{");
+        sb.append("\"timestamp\":");
         sb.append(new Date().getTime());
-        sb.append(",source:\"");
+        sb.append(",\"source\":\"");
         sb.append(this.source);
-        sb.append("\"}, data:\"");
+        sb.append("\"}, \"data\":\"");
         sb.append(encoded);
         sb.append("\"}}");
                 
-        this.poster.post(sb.toString());
+        this.pusher.push(sb.toString());
     }
 }

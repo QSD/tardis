@@ -31,3 +31,4 @@ dependency-reduced-pom.xml
 *.iml
 /tardis-frontend/target-grunt/
 /target-grunt/
+/tarbus/.nb-gradle/private/
