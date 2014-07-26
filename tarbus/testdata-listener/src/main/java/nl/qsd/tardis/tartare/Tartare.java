@@ -16,31 +16,35 @@ public class Tartare {
 
     private int port = 2020;
     
+    private String source = "tartare";
+    
     private String restUrl = "htpp://localhost:8080";
     
     public Tartare(String[] args) throws IOException, URISyntaxException {
         parseArgs(args);        
-        listen(this.port, this.restUrl);
+        listen(this.port, this.source, this.restUrl);
     }        
     
     private void parseArgs(String[] args) {
-        if (args == null || args.length != 2) {
-            System.err.print("Usage: <port> <posturl>");
+        if (args == null || args.length != 3) {
+            System.err.print("Usage: <port> <source> <posturl>");
             System.exit(1);
         }
         
         this.port = Integer.parseInt(args[0]);
-        this.restUrl = args[1];
+        this.source = args[1];
+        this.restUrl = args[2];
     }
     
-    private void listen(int port, String restUrl) throws IOException, URISyntaxException {
+    private void listen(int port, String source, String restUrl) throws IOException, URISyntaxException {
         ServerSocket serverSocket = new ServerSocket(port);
         
+        System.out.println("Listening to port " + port);
         while (true) {
-            new SocketReader(serverSocket.accept(), 
+            new SocketReader(serverSocket.accept().getInputStream(), 
                     new Transformer("ivo",
                             new Poster(
-                                    new URI("http://localhost:8080"))));
+                                    new URI(this.restUrl))));
         }                
     }
 }

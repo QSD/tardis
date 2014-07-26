@@ -9,7 +9,7 @@ import java.net.URLEncoder;
 /**
  * @author Ivo Limmen <ivo.limmen@qsd.nl>
  */
-public class Poster {
+public class Poster implements Pusher {
 
     private final URI restUrl;
 
@@ -17,7 +17,8 @@ public class Poster {
         this.restUrl = restUrl;
     }
 
-    public void post(String text) throws IOException {
+    @Override
+    public void push(String text) throws IOException {
         URLConnection urlConn = this.restUrl.toURL().openConnection();
         urlConn.setDoOutput(true);
         urlConn.setUseCaches(false);
