@@ -29,5 +29,7 @@ public class SocketReader {
         while ((line = this.inputStream.readLine()) != null) {            
             pusher.push(line);
         }
+        
+        this.inputStream.close();                       
     }
 }

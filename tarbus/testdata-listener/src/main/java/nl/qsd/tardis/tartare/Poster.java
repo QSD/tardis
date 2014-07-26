@@ -1,10 +1,9 @@
 package nl.qsd.tardis.tartare;
 
-import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
+import java.net.HttpURLConnection;
 import java.net.URI;
-import java.net.URLConnection;
-import java.net.URLEncoder;
 
 /**
  * @author Ivo Limmen <ivo.limmen@qsd.nl>
@@ -19,16 +18,27 @@ public class Poster implements Pusher {
 
     @Override
     public void push(String text) throws IOException {
-        URLConnection urlConn = this.restUrl.toURL().openConnection();
+        HttpURLConnection urlConn = (HttpURLConnection) this.restUrl.toURL().openConnection();
         urlConn.setDoOutput(true);
+        urlConn.setDoInput(true);
         urlConn.setUseCaches(false);
-        urlConn.setRequestProperty("Content-Type", "application/json");
+        urlConn.setRequestMethod("PUT");        
+        urlConn.connect();
         
-        try (DataOutputStream printout = new DataOutputStream(urlConn.getOutputStream())) {
+        try (PrintStream printout = new PrintStream(urlConn.getOutputStream())) {
 
-            printout.writeBytes(URLEncoder.encode(text));
+            printout.print(text);
             printout.flush();
-            printout.close();
+        }     
+        
+        if (urlConn.getResponseCode() != 200) {
+            System.err.println("Response code = " + urlConn.getResponseCode());
+            System.err.println("Response code = " + urlConn.getResponseMessage());
         }
+        else {
+            System.err.println("--OK--");        
+        }
+        
+        urlConn.disconnect();
     }
 }
