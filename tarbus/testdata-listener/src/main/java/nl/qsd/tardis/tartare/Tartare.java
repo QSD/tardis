@@ -42,9 +42,12 @@ public class Tartare {
         System.out.println("Listening to port " + port);
         while (true) {
             new SocketReader(serverSocket.accept().getInputStream(), 
-                    new Transformer("ivo",
+                    new Transformer(this.source,
                             new Poster(
-                                    new URI(this.restUrl))));
+                                    new URI(this.restUrl))))
+                    .push();
+            
+            System.out.println("Send event...");
         }                
     }
 }
